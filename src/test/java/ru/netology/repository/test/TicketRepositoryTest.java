@@ -23,10 +23,22 @@ public class TicketRepositoryTest {
         repo.add(ticket3);
         repo.add(ticket4);
         repo.add(ticket5);
-        repo.removeById(3);
+
 
         Ticket[] actual = repo.findAll();
-        Ticket[] expected = { ticket1, ticket2, ticket4, ticket5 };
+        Ticket[] expected = { ticket1, ticket2, ticket3, ticket4, ticket5 };
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void removeByIdAndFindByEmptyRepository() {
+        TicketRepository repo = new TicketRepository();
+        repo.add(ticket1);
+        repo.removeById(1);
+
+
+        Ticket[] actual = repo.findAll();
+        Ticket[] expected = {};
         assertArrayEquals(expected, actual);
     }
 

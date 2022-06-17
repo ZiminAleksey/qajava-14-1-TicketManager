@@ -28,6 +28,23 @@ public class TicketManagerTest {
         Ticket[] actual = manager.findAllBySort("6", "B");
         Ticket[] expected = {ticket4, ticket2, ticket3, ticket1};
         assertArrayEquals(expected,actual);
-
     }
+
+    @Test
+    public void findAllEmptyRepository () {
+
+        TicketRepository repo = new TicketRepository();
+        TicketManager manager = new TicketManager(repo);
+        repo.add(ticket1);
+        manager.add(ticket4);
+        repo.removeById(1);
+        repo.removeById(4);
+
+        Ticket[] actual = manager.findAllBySort("6", "B");
+        Ticket[] expected = {};
+        assertArrayEquals(expected,actual);
+    }
+
+
+
 }
